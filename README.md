@@ -111,15 +111,16 @@ We have installed the following Beats on these machines:
 
 These Beats allow us to collect the following information from each machine:
 - _Filebeat collect data (detects changes)from the file system. It can aid in locating new additions to recently added files or even inform you if those files have been previously modified. We are using this to monitor our Web log data._
- _ Metricbeat detects changes in the system metrics,such as CPU usage. Metricbeat creates an event and informs about the uptime/downtime._ 
+- _ Metricbeat detects changes in the system metrics,such as CPU usage. Metricbeat creates an event and informs about the uptime/downtime._ 
  
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to ______.
-- Update the _hosts_ file to include which machine/machines the playbook will run on. eg: [ELK] 10.1.0.4 ansible_python_interpreter=/usr/bin/python3
-- Run the playbook, and navigate to _http://[your.ELK-VM.External.IP]:5601/app/kibana_ to check that the installation worked as expected.
+- Copy the install-elk.yml(playbook) file to /etc/ansible.
+- Update the _hosts_ file to include which machine/machines the playbook will run on. eg: [ELK] 10.1.0.4 ansible_python_interpreter=/usr/bin/python3 and [webservers] to include the 3 Web  Vms
+- Run the playbook, and navigate to _http://[my.ELK-VM.External.IP]:5601/app/kibana_ to check that the installation worked as expected.
 
-
+####Notes: 
+- We also need to download filebeat-config.yml and metricbeat-config.yml in /etc/ansible/files and filebeat-playbook.yml and metricbeat-playbook.yml in /etc/ansible/roles file. We need to modify all the four files and the modified files are in repository under Ansible folders.These help to install Filebeat and Metricbeat in the Web VMs. After that, we need to run the playbooks using ansible-playbook command.After that, we can see that 'the data succesfully loaded' when we go to the kibana webpage in the 'Systemlog' and 'DockerMetric' options.  
 
