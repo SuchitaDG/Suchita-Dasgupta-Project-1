@@ -1,7 +1,0 @@
-Analysis Outcome:
-After previewing and analyzing "Dealers_working_during_losses" file, it is clear dealer "Billy Jones" was working at the Roulette game on all 13 times when the losses occured.
-
-It was easy to complete this analysis this time since only dealer was involved when the losses occurred. However, I wrote an awk script "count_dealer.awk" to analyze "Dealers_working_druing_losses" file for future scenarios.
-
-Command I used to run awk script is as follows:
-$awk -f count_dealer.awk Lucky_Duck_Investigations/Roulette_Loss_Investigation/Dealer_Analysis/Dealers_working_during_losses
