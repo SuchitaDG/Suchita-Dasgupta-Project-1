@@ -54,13 +54,13 @@ The configuration details of each machine may be found below.
 The machines on the internal network are not exposed to the public Internet. 
 
 Only the _Jump-Box-Provisioner_ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
--Workstation Public IP 24.23.185.52
+- Workstation Public IP 24.23.185.52
   
 Machines within the network can only be accessed by Jump-Box-Provisioner.
 Which machine did you allow to access your ELK VM? What was its IP address?
 
--Workstation Public IP 24.23.185.52 through TCP 5601
--Jump-Box-Provisioner IP : 10.0.0.7 via SSH port 22
+- Workstation Public IP 24.23.185.52 through TCP 5601
+- Jump-Box-Provisioner IP : 10.0.0.7 via SSH port 22
 
 A summary of the access policies in place can be found in the table below.
 
