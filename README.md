@@ -121,6 +121,6 @@ SSH into the control node and follow the steps below:
 - Update the _hosts_ file to include which machine/machines the playbook will run on. eg: [ELK] 10.1.0.4 ansible_python_interpreter=/usr/bin/python3 and [webservers] to include the 3 Web  Vms
 - Run the playbook, and navigate to _http://[my.ELK-VM.External.IP]:5601/app/kibana_ to check that the installation worked as expected.
 
-####Notes: 
-- We also need to download filebeat-config.yml and metricbeat-config.yml in /etc/ansible/files and filebeat-playbook.yml and metricbeat-playbook.yml in /etc/ansible/roles file. We need to modify all the four files and the modified files are in repository under Ansible folders.These help to install Filebeat and Metricbeat in the Web VMs. After that, we need to run the playbooks using ansible-playbook command.After that, we can see that 'the data succesfully loaded' when we go to the kibana webpage in the 'Systemlog' and 'DockerMetric' options.  
+### Notes: 
+- We also need to download filebeat-config.yml and metricbeat-config.yml in /etc/ansible/files and create filebeat-playbook.yml and metricbeat-playbook.yml in /etc/ansible/roles file(We can download the template and modify it also). We need to modify the configuration files and the modified files are in repository under Ansible folders. After that, we need to run the playbooks using ansible-playbook command.These help to install Filebeat and Metricbeat in the Web VMs.After that, we can see that 'the data succesfully loaded' when we go to the kibana webpage in the 'Systemlog' and 'DockerMetric' options.  
 
