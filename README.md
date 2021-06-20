@@ -57,7 +57,7 @@ Only the _Jump-Box-Provisioner_ machine can accept connections from the Internet
         _ Workstation Public IP 24.23.185.52_.
   
 Machines within the network can only be accessed by Jump-Box-Provisioner.
-	_ Which machine did you allow to access your ELK VM? What was its IP address?_
+	_Which machine did you allow to access your ELK VM? What was its IP address?_
 
         _Workstation Public IP 24.23.185.52 through TCP 5601_
 
