@@ -66,15 +66,15 @@ Jump-Box-Provisioner IP : 10.0.0.7 via SSH port 22
 
 A summary of the access policies in place can be found in the table below.
 
-|     Name                    |     Publicly Accessible    |     Allowed IP Addresses                                          |
-|-----------------------------|----------------------------|-------------------------------------------------------------------|
-|     Jump-Box-Provisioner    |     Yes                    |     Only from My Home IP 24.23.185.152 on port 22 using SSH       |
-|     Web-1                   |     Yes                    |     Only from My Home IP 24.23.185.152 on port 80 using HTTP      |
-|     Web-2                   |     Yes                    |     Only from My Home IP 24.23.185.152 on port 80 using HTTP      |
-|     Web-3                   |     Yes                    |     Only from My Home IP 24.23.185.152 on port 80 using HTTP      |
-|     ELK-VirtualMachine      |     Yes                    |     Only from My Home IP 24.23.185.152 on port 5601 using HTTP    |
-|     Red-Team-LB             |     Yes                    |     Only from My Home IP 24.23.185.152 on port 5601 using HTTP    |
 
+|     Name                    |     Publicly Accessible    |     Allowed IP Addresses                                                                       |
+|-----------------------------|----------------------------|------------------------------------------------------------------------------------------------|
+|     Jump-Box-Provisioner    |     Yes                    |     Only from My Home IP 24.23.185.152 on port 22 using SSH                                    |
+|     Web-1                   |     Yes                    |     Only from My Home IP 24.23.185.152 on port 80 using HTTP;SSH from 10.0.0.7(privately)      |
+|     Web-2                   |     Yes                    |     Only from My Home IP 24.23.185.152 on port 80 using HTTP;SSH from 10.0.0.7(privately)      |
+|     Web-3                   |     Yes                    |     Only from My Home IP 24.23.185.152 on port 80 using HTTP;SSH from 10.0.0.7(privately)      |
+|     ELK-VirtualMachine      |     Yes                    |     Only from My Home IP 24.23.185.152 on port 5601 using HTTP;SSH from 10.0.0.7(privately)    |
+|     Red-Team-LB             |     Yes                    |     Only from My Home IP 24.23.185.152 on port 5601 using HTTP                                 |
 
 ### Elk Configuration
 
@@ -122,5 +122,34 @@ SSH into the control node and follow the steps below:
 - Run the playbook, and navigate to _http://[my.ELK-VM.External.IP]:5601/app/kibana_ to check that the installation worked as expected.
 
 ### Notes: 
-- We also need to download filebeat-config.yml and metricbeat-config.yml in /etc/ansible/files and create filebeat-playbook.yml and metricbeat-playbook.yml in /etc/ansible/roles file(We can download the template and modify it also). We need to modify the configuration files and the modified files are in repository under Ansible folders. After that, we need to run the playbooks using ansible-playbook command.These help to install Filebeat and Metricbeat in the Web VMs.After that, we can see that 'the data succesfully loaded' when we go to the kibana webpage in the 'Systemlog' and 'DockerMetric' options.  
+- We also need to download filebeat-config.yml and metricbeat-config.yml in /etc/ansible/files and create filebeat-playbook.yml and metricbeat-playbook.yml in /etc/ansible/roles file(We can download the template and modify it also). We need to modify the configuration files and the modified files are in repository under Ansible folders.The Ansible.config file needs to be updated with 'remote-user' variable assigned the name of user. After that, we need to run the playbooks using ansible-playbook command.These help to install Filebeat and Metricbeat in the Web VMs.After that, we can see that 'the data succesfully loaded' when we go to the kibana webpage in the 'Systemlog' and 'DockerMetric' options.  
 
+
+### Additional Notes
+
+The command to download the raw configuration file filebeat-config.yml into /etc/ansible/files is
+curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat >> /etc/ansible/files/filebeat-config.yml
+
+The command to download the raw configuration file metricbeat-config.yml into /etc/ansible/files is
+curl https://gist.githubusercontent.com/slape/58541585cc1886d2e26cd8be557ce04c/raw/0ce2c7e744c54513616966affb5e9d96f5e12f73/metricbeat >> /etc/ansible/files/metricbeat-config.yml
+
+The command to update hosts file is
+
+nano /etc/ansible/hosts   
+and edit the file with nano editor and save with ctl X &'y'
+
+#### Some Linux Commands
+
+|      COMMAND                                             |      PURPOSE                                      |
+|----------------------------------------------------------|---------------------------------------------------|
+|     sudo apt-get update                                  |     this will update all packages                 |
+|     sudo apt install docker.io                           |     install docker application                    |
+|     sudo service docker start                            |     start the docker application                  |
+|     systemctl status docker                              |     status of the docker application              |
+|     sudo docker pull   cyberxsecurity/ansible            |     Pull the container file                       |
+|     sudo docker run -ti   cyberxsecurity/ansible bash    |     run and create a docker image                 |
+|     sudo docker start <image-name>                       |     starts the image specified                    |
+|     sudo docker ps -a                                    |     list all active/inactive containers           |
+|     sudo docker attach   <image-name>                    |     Activate shell on your container              |
+|     ssh-keygen                                           |     create a ssh key                              |
+|     ansible -m ping all                                  |     check the connection of ansible containers    |
