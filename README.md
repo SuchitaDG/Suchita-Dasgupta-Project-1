@@ -74,7 +74,7 @@ A summary of the access policies in place can be found in the table below.
 |     Web-2                   |     Yes                    |     Only from My Home IP 24.23.185.152 on port 80 using HTTP;SSH from 10.0.0.7(privately)      |
 |     Web-3                   |     Yes                    |     Only from My Home IP 24.23.185.152 on port 80 using HTTP;SSH from 10.0.0.7(privately)      |
 |     ELK-VirtualMachine      |     Yes                    |     Only from My Home IP 24.23.185.152 on port 5601 using HTTP;SSH from 10.0.0.7(privately)    |
-|     Red-Team-LB             |     Yes                    |     Only from My Home IP 24.23.185.152 on port 5601 using HTTP                                 |
+|     Red-Team-LB             |     Yes                    |     Only from My Home IP 24.23.185.152 on port 80 using HTTP                                   |
 
 ### Elk Configuration
 
